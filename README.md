@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 3D Hardware Configurator
 
-## Getting Started
+Interactive 3D laptop configurator built with **Next.js, Three.js, and Prisma**.
 
-First, run the development server:
+Users can visually explore a laptop model, configure hardware components, and see **real-time pricing and performance calculations**.
 
-```bash
+---
+
+## Demo
+
+![Demo](assets/demo.gif)
+
+---
+
+## Screenshots
+
+### 3D Product View
+
+![Hero](assets/hero.png)
+
+### Configuration Panel
+
+![Configurator](assets/configurator-panel.png)
+
+---
+
+## Features
+
+- Interactive **3D laptop visualization**
+- Hardware configuration (CPU, RAM, Storage)
+- **Real-time price calculation**
+- **Performance scoring**
+- Quick configuration presets
+- Component inspection by clicking the 3D model
+- Save configuration API
+- Clean modern UI
+
+---
+
+## Tech Stack
+
+Frontend
+
+- Next.js
+- React
+- TypeScript
+- TailwindCSS
+
+3D Engine
+
+- Three.js
+- React Three Fiber
+- Drei helpers
+
+Backend
+
+- Next.js API Routes
+- Prisma ORM
+- SQLite / Postgres ready
+
+---
+
+## Project Structure
+app/
+API routes and UI pages
+
+assets/
+project screenshots and demo gif
+
+public/models/
+3D models
+
+prisma/
+database schema
+
+
+
+## Project Structure
+
+---
+
+## Installation
+
+Clone the repository
+
+ git clone https://github.com/MazurPavel/3d-hardware-configurator.gitgit clone https://github.com/MazurPavel/3d-hardware-configurator.git
+
+
+Install dependencies
+npm install
+
+Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Future Improvements
 
-To learn more about Next.js, take a look at the following resources:
+- GPU configuration
+- SSD tiers
+- Color customization
+- Product animation
+- Online deployment
+- Database persistence
+- Config export/share
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Author
 
-## Deploy on Vercel
+Pavel Mazur
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+GitHub  
+https://github.com/MazurPavel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
