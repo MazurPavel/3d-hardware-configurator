@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Device {
+  id             Int                 @id @default(autoincrement())
+  name           String
+  slug           String              @unique
+  basePrice      Float
+  bodyColor      String
+  components     Component[]
+  configurations UserConfiguration[]
+}
+
+model Component {
+  id          Int               @id @default(autoincrement())
+  name        String
+  key         String
+  description String
+  visible     Boolean           @default(true)
+
+  deviceId    Int
+  device      Device            @relation(fields: [deviceId], references: [id])
+
+  options     ComponentOption[]
+}
+
+model ComponentOption {
+  id          Int        @id @default(autoincrement())
+  name        String
+  priceDelta  Float
+  perfScore   Int
+
+  componentId Int
+  component   Component  @relation(fields: [componentId], references: [id])
+}
+
+model UserConfiguration {
+  id         Int      @id @default(autoincrement())
+  sessionId  String
+  totalPrice Float
+  totalPerf  Int
+  selections Json
+  createdAt  DateTime @default(now())
+
+  deviceId   Int
+  device     Device   @relation(fields: [deviceId], references: [id])
+}

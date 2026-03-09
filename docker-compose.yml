@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: hw_config_db
+    environment:
+      POSTGRES_USER: config
+      POSTGRES_PASSWORD: config
+      POSTGRES_DB: hardware_configurator
+    ports:
+      - "5432:5432"
+    volumes:
+      - hw_config_db_data:/var/lib/postgresql/data
+
+volumes:
+  hw_config_db_data:
