@@ -1,8 +1,8 @@
 # 3D Hardware Configurator
 
-Interactive 3D laptop configurator built with **Next.js, Three.js, and Prisma**.
+Interactive 3D laptop configurator that allows users to explore a WebGL-based device model, customize hardware components (CPU, RAM, Storage), and instantly see how configuration changes affect price and performance.
 
-Users can visually explore a laptop model, configure hardware components, and see **real-time pricing and performance calculations**.
+The application renders a 3D laptop model using React Three Fiber and enables interactive product configuration similar to modern e-commerce hardware configurators.
 
 ---
 
