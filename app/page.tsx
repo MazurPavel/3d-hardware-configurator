@@ -156,33 +156,37 @@ export default function Home() {
   }, [selectedPart]);
 
   async function saveConfiguration() {
-    if (!device) return;
+  if (!device) return;
 
-    try {
-      setSaving(true);
+  try {
+    setSaving(true);
 
-      await fetch("/api/save-config", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          sessionId: "guest-session",
-          deviceId: device.id,
-          selections,
-          totalPrice,
-          totalPerf,
-        }),
-      });
+    const res = await fetch("/api/save-config", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        sessionId: "guest-session",
+        deviceId: device.id,
+        selections,
+        totalPrice,
+        totalPerf,
+      }),
+    });
 
-      alert("Configuration saved");
-    } catch (error) {
-      console.error(error);
-      alert("Failed to save configuration");
-    } finally {
-      setSaving(false);
+    if (!res.ok) {
+      throw new Error(`Failed to save configuration: ${res.status}`);
     }
+
+    alert("Configuration saved");
+  } catch (error) {
+    console.error(error);
+    alert("Failed to save configuration");
+  } finally {
+    setSaving(false);
   }
+}
 
   function applyPreset(preset: "basic" | "balanced" | "pro") {
     if (!device) return;
@@ -237,7 +241,22 @@ export default function Home() {
         </p>
 
         <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
-          <div className="h-[660px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <div className="relative h-[660px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div className="absolute left-4 top-4 z-10 rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-sm shadow">
+  <div className="font-semibold text-slate-700">Current Build</div>
+
+  <div className="mt-1 text-slate-600">
+    CPU: {cpu?.options.find((o) => o.id === selections.cpu)?.name ?? "-"}
+  </div>
+
+  <div className="text-slate-600">
+    RAM: {ram?.options.find((o) => o.id === selections.ram)?.name ?? "-"}
+  </div>
+
+  <div className="text-slate-600">
+    Storage: {storage?.options.find((o) => o.id === selections.storage)?.name ?? "-"}
+  </div>
+</div>
             <Canvas camera={{ position: [0, 1.5, 6], fov: 45 }}>
               <color attach="background" args={["#f8fafc"]} />
 
