@@ -6,7 +6,6 @@ import {
   ContactShadows,
   OrbitControls,
   useGLTF,
-  Environment
 } from "@react-three/drei";
 import { Suspense, useEffect, useMemo, useState } from "react";
 
@@ -51,6 +50,10 @@ function LaptopModel({
         scale={hovered ? 0.032 : 0.03}
         position={[0, -0.4, 0]}
         rotation={[0, -0.6, 0]}
+        onClick={(e) => {
+          e.stopPropagation();
+          onSelectPart("body");
+        }}
         onPointerOver={() => {
           document.body.style.cursor = "pointer";
           setHovered(true);
@@ -77,6 +80,7 @@ export default function Home() {
   const [totalPerf, setTotalPerf] = useState<number>(0);
   const [saving, setSaving] = useState(false);
   const [selectedPart, setSelectedPart] = useState<PartKey | null>(null);
+  const [activePreset, setActivePreset] = useState<"basic" | "balanced" | "pro" | null>(null);
 
   useEffect(() => {
     async function loadDevice() {
@@ -190,6 +194,7 @@ export default function Home() {
 
   function applyPreset(preset: "basic" | "balanced" | "pro") {
     if (!device) return;
+    setActivePreset(preset);
 
     const cpuOptions =
       device.components.find((c) => c.key === "cpu")?.options || [];
@@ -228,6 +233,14 @@ export default function Home() {
 
   const selectClassName =
     "mt-2 w-full rounded-xl border border-slate-300 bg-white p-3 text-sm shadow-sm outline-none transition focus:border-slate-500";
+    const presetTint =
+  activePreset === "basic"
+    ? "rgba(148, 163, 184, 0.18)"
+    : activePreset === "balanced"
+    ? "rgba(59, 130, 246, 0.16)"
+    : activePreset === "pro"
+    ? "rgba(168, 85, 247, 0.18)"
+    : "transparent";
 
   return (
     <main className="min-h-screen bg-slate-100 p-6">
@@ -257,6 +270,10 @@ export default function Home() {
     Storage: {storage?.options.find((o) => o.id === selections.storage)?.name ?? "-"}
   </div>
 </div>
+<div
+  className="pointer-events-none absolute inset-0 z-[1] transition"
+  style={{ background: presetTint }}
+/>
             <Canvas camera={{ position: [0, 1.5, 6], fov: 45 }}>
               <color attach="background" args={["#f8fafc"]} />
 
