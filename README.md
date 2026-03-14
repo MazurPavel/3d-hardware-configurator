@@ -7,7 +7,7 @@
 ![React Three Fiber](https://img.shields.io/badge/renderer-React%20Three%20Fiber-purple)
 ![Prisma](https://img.shields.io/badge/backend-Prisma-2D3748)
 
-Interactive 3D laptop configurator that allows users to explore a WebGL-based device model, customize hardware components (CPU, RAM, Storage), and instantly see how configuration changes affect price and performance.
+Interactive 3D laptop configurator built with Next.js, React Three Fiber, and Prisma. Users can customize hardware components and instantly see how each selection affects price and performance.
 
 The application renders a 3D laptop model using **React Three Fiber** and enables interactive product configuration similar to modern e-commerce hardware configurators.
 
@@ -16,16 +16,6 @@ The application renders a 3D laptop model using **React Three Fiber** and enable
 ## Demo
 
 ![Demo](assets/demo.gif)
-
----
-
-## Screenshots
-
-### 3D Product View
-![Main Interface](assets/hero.png)
-
-### Configuration Panel
-![Configurator Panel](assets/configurator-panel.png)
 
 ---
 
@@ -39,6 +29,11 @@ The application renders a 3D laptop model using **React Three Fiber** and enable
 - Component inspection by clicking the 3D model
 - Save configuration API
 - Clean modern UI
+
+---
+## System Architecture
+
+![System Architecture](assets/architecture.png)
 
 ---
 
@@ -65,11 +60,11 @@ The application renders a 3D laptop model using **React Three Fiber** and enable
 ## Project Structure
 
 ```text
-app/                API routes and UI pages
-assets/             project screenshots and demo gif
+app/                UI pages and API routes
+assets/             demo GIF and project screenshots
 public/models/      3D models
-prisma/             database schema
-
+prisma/             database schema and configuration
+```
 ---
 
 ## Installation
@@ -100,6 +95,16 @@ http://localhost:3000
 ```
 
 Note: `localhost:3000` is a **local development URL** and will only work on your own machine unless the project is deployed.
+
+---
+
+## Screenshots
+
+### 3D Product View
+![Main Interface](assets/hero.png)
+
+### Configuration Panel
+![Configurator Panel](assets/configurator-panel.png)
 
 ---
 
